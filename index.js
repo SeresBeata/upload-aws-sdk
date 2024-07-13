@@ -76,14 +76,6 @@ app.post("/upload", upload.single("file"), (req, res) => {
   // console.log(req.file);
   const IMAGE_PATH = req.file.path;
   const IMAGE_KEY = req.file.filename;
-  // const input = {
-  //   Body: IMAGE_PATH,
-  //   Bucket: AWS_BUCKET,
-  //   Key: { IMAGE_KEY },
-  // };
-  // s3Client.send(new PutObjectCommand(input)).then((PutObjectResponse) => {
-  //   res.send(PutObjectResponse);
-  // });
   const uploadFile = () => {
     fs.readFile(IMAGE_PATH, (err, data) => {
       if (err) throw err;
