@@ -17,7 +17,6 @@ AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 AWS_REGION = process.env.AWS_REGION;
 AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 AWS_BUCKET = "my-cool-local-bucket";
-RETRIEVE_URL = "http://localhost:4566/my-cool-local-bucket/river.jpg";
 
 const s3Client = new S3Client({
   region: AWS_REGION,
