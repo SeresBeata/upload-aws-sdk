@@ -99,7 +99,9 @@ app.post("/upload", upload.single("file"), (req, res) => {
     });
   };
   uploadFile();
-  res.json({ message: "File uploaded successfully!" });
+  // res.json({ message: "File uploaded successfully!" });
+  console.log("File uploaded successfully!");
+  res.sendFile("successful.html", options);
 });
 
 app.listen(port, () => {
