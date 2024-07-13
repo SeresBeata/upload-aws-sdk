@@ -44,10 +44,6 @@ app.get("/images", (req, res) => {
     });
 });
 
-app.get("/images/download", (req, res) => {
-  res.redirect(RETRIEVE_URL);
-});
-
 app.get("/download", (req, res) => {
   const downloadFilePath = "downloads/";
   console.log(req.query);
@@ -72,26 +68,6 @@ app.get("/download", (req, res) => {
     }
   };
   downloadImage(downloadFilePath, key);
-});
-
-app.post("/images/upload", (req, res) => {
-  const file = "./images/river.jpg";
-  const fileName = "river.jpg";
-  const uploadFile = () => {
-    fs.readFile(file, (err, data) => {
-      if (err) throw err;
-      const params = {
-        Bucket: AWS_BUCKET,
-        Key: fileName,
-        Body: data,
-      };
-      s3.upload(params, function (s3err, data) {
-        if (s3err) throw s3err;
-        console.log("File uploaded", data);
-      });
-    });
-  };
-  uploadFile();
 });
 
 // Set up a route for file uploads
