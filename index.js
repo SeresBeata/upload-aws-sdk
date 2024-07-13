@@ -13,10 +13,15 @@ const port = 3000;
 const AWS = require("aws-sdk");
 // Require the upload middleware
 const upload = require("./upload");
+const path = require("path");
 AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 AWS_REGION = process.env.AWS_REGION;
 AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 AWS_BUCKET = "my-cool-local-bucket";
+
+const options = {
+  root: path.join(__dirname),
+};
 
 const s3Client = new S3Client({
   region: AWS_REGION,
@@ -30,6 +35,10 @@ const s3 = new AWS.S3({
   accessKeyId: AWS_ACCESS_KEY_ID,
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
   s3ForcePathStyle: true, // required for localstack
+});
+
+app.get("/home", (req, res) => {
+  res.sendFile("index.html", options);
 });
 
 app.get("/images", (req, res) => {
